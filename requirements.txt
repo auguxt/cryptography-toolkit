@@ -1,8 +1,12 @@
-# ==========================================================
-# Cryptography Algorithms
-# Author: auguxt
-# Repository: https://github.com/auguxt/cryptography-algorithms
-# ==========================================================
+# ============================================================
+# Cryptography Toolkit
+# Author     : auguxt
+# Repository : https://github.com/auguxt/cryptography-toolkit
+# License    : MIT
+#
+# Install:
+#   pip install -r requirements.txt
+# ============================================================
 
-# Modern cryptography library
+# Modern cryptographic primitives
 cryptography>=45.0.0,<46.0.0
