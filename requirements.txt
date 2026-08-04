@@ -1,0 +1,8 @@
+# ==========================================================
+# Cryptography Algorithms
+# Author: auguxt
+# Repository: https://github.com/auguxt/cryptography-algorithms
+# ==========================================================
+
+# Modern cryptography library
+cryptography>=45.0.0,<46.0.0
