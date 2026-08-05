@@ -54,18 +54,25 @@ A simple, educational cryptography toolkit implementing three classic encryption
 
 ```
 cryptography-toolkit/
+├── README.md                 # Project documentation
+├── LICENSE                   # MIT License
+├── requirements.txt          # Project dependencies
+├── pyproject.toml            # Project metadata & tool config
+├── .gitignore                # Git ignored files
+│
 ├── caesar_cipher.py          # Caesar Cipher implementation
 ├── xor_cipher.py             # XOR Cipher implementation
 ├── rsa_cipher.py             # RSA Cipher implementation
+│
 ├── examples/
 │   ├── caesar_example.py     # 10 Caesar Cipher examples
 │   ├── xor_example.py        # 14 XOR Cipher examples
 │   └── rsa_example.py        # 14 RSA Cipher examples
-├── tests/
-│   ├── test_caesar.py        # 43 Caesar Cipher tests
-│   ├── test_xor.py           # 51 XOR Cipher tests
-│   └── test_rsa.py           # 60+ RSA Cipher tests
-└── README.md                 # This file
+│
+└── tests/
+    ├── test_caesar.py        # 43 Caesar Cipher tests
+    ├── test_xor.py           # 51 XOR Cipher tests
+    └── test_rsa.py           # 60+ RSA Cipher tests
 ```
 
 ## Installation
@@ -89,7 +96,14 @@ python -m venv venv
 source venv/bin/activate  # On Windows: venv\Scripts\activate
 ```
 
-3. No additional installation needed - just run!
+3. Install dependencies (either method works):
+```bash
+# Option A: via requirements.txt
+pip install -r requirements.txt
+
+# Option B: via pyproject.toml (editable install, includes dev tools)
+pip install -e ".[dev]"
+```
 
 ## Quick Start
 
