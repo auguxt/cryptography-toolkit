@@ -1,88 +1,90 @@
-import string
+"""
+Simple Caesar Cipher Implementation
+Shifts each letter by a fixed number of positions in the alphabet
+"""
 
-def caesar_encrypt(text: str, shift: int) -> str:
-    """ Encrypt text using Caesar cipher with given shift."""
-    result = []
+def encrypt(text, shift):
+    """
+    Encrypts text using Caesar Cipher
+    
+    Args:
+        text (str): The text to encrypt
+        shift (int): Number of positions to shift (1-25)
+    
+    Returns:
+        str: Encrypted text
+    """
+    result = ""
+    
     for char in text:
         if char.isalpha():
-            base = ord('A') if char.isupper() else ord('a')
-            offset = (ord(char) - base + shift) % 26
-            result.append(chr(base + offset))
-        else:
-            result.append(char)
-    return ''.join(result)
-
-def caesar_decrypt(ciphertext: str, shift: int) -> str:
-    """Decrypt Caesar cipher by reversing the shift."""
-    return caesar_encrypt(ciphertext, -shift)
-
-def brute_force_decrypt(ciphertext: str) -> None:
-    """Try all 26 possible shifts and display results."""
-    print("\n🔍 Brute Force Decryption (All 26 Shifts):")
-    print("-" * 50)
-    for shift in range(26):
-        decrypted = caesar_decrypt(ciphertext, shift)
-        print(f"Shift {shift:2d}: {decrypted}")
-    print("-" * 50)
-
-def get_valid_shift() -> int:
-    """Prompt user for a valid integer shift value."""
-    while True:
-        try:
-            shift = int(input("Enter shift amount (0-25): ").strip())
-            if 0 <= shift <= 25:
-                return shift
-            print("⚠️ Shift must be between 0 and 25.")
-        except ValueError:
-            print("❌ Please enter a valid integer.")
-
-def interactive_demo():
-    """Main interactive menu for the Caesar cipher tool."""
-    print("\n" + "=" * 50)
-    print("🔐 Advanced Caesar Cipher Tool 🔐")
-    print("=" * 50)
-    
-    while True:
-        print("\n📋 Menu:")
-        print("  [e] Encrypt text")
-        print("  [d] Decrypt with known shift")
-        print("  [b] Brute force decrypt (try all shifts)")
-        print("  [q] Quit")
-        
-        choice = input("\nSelect option (e/d/b/q): ").strip().lower()
-        
-        if choice == 'q':
-            print("\n👋 Goodbye! Stay secure. 🔐")
-            break
-        
-        if choice not in ['e', 'd', 'b']:
-            print("❌ Invalid option. Please try again.")
-            continue
-        
-        text = input("Enter text: ").strip()
-        if not text:
-            print("⚠️ Text cannot be empty.")
-            continue
-        
-        if choice == 'b':
-            brute_force_decrypt(text)
-            continue
-        
-        shift = get_valid_shift()
-        
-        if choice == 'e':
-            result = caesar_encrypt(text, shift)
-            print(f"\n✅ Encrypted: {result}")
-        elif choice == 'd':
-            result = caesar_decrypt(text, shift)
-            print(f"\n🔓 Decrypted: {result}")
-        
-        # Optional: Show reverse operation
-        if input("\n🔁 Show reverse operation? (y/n): ").strip().lower() == 'y':
-            if choice == 'e':
-                print(f"   Decrypting back: {caesar_decrypt(result, shift)}")
+            # Determine if uppercase or lowercase
+            if char.isupper():
+                # Shift uppercase letters
+                result += chr((ord(char) - ord('A') + shift) % 26 + ord('A'))
             else:
-                print(f"   Encrypting back: {caesar_encrypt(result, shift)}")
+                # Shift lowercase letters
+                result += chr((ord(char) - ord('a') + shift) % 26 + ord('a'))
+        else:
+            # Keep non-alphabetic characters unchanged
+            result += char
+    
+    return result
 
+
+def decrypt(text, shift):
+    """
+    Decrypts text using Caesar Cipher
+    
+    Args:
+        text (str): The encrypted text
+        shift (int): Number of positions that were shifted
+    
+    Returns:
+        str: Decrypted text
+    """
+    # Decryption is just encryption with negative shift
+    return encrypt(text, -shift)
+
+
+def brute_force(text):
+    """
+    Tries all possible Caesar Cipher shifts (1-25)
+    
+    Args:
+        text (str): The encrypted text
+    
+    Returns:
+        dict: All possible decryptions with their shift values
+    """
+    results = {}
+    
+    for shift in range(1, 26):
+        results[shift] = decrypt(text, shift)
+    
+    return results
+
+
+# Example usage
 if __name__ == "__main__":
-    interactive_demo()
+    # Encrypt a message
+    message = "Hello World"
+    shift_key = 3
+    
+    encrypted = encrypt(message, shift_key)
+    print(f"Original:  {message}")
+    print(f"Encrypted: {encrypted}")
+    print(f"Shift key: {shift_key}")
+    
+    # Decrypt the message
+    decrypted = decrypt(encrypted, shift_key)
+    print(f"Decrypted: {decrypted}")
+    
+    print("\n--- Brute Force Attack ---")
+    encrypted_text = "Khoor Zruog"
+    print(f"Encrypted text: {encrypted_text}")
+    print("\nPossible decryptions:")
+    
+    attempts = brute_force(encrypted_text)
+    for shift_val, decryption in attempts.items():
+        print(f"Shift {shift_val:2d}: {decryption}")
