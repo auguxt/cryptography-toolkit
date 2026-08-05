@@ -1,12 +1,7 @@
-# ============================================================
-# Cryptography Toolkit
-# Author     : auguxt
-# Repository : https://github.com/auguxt/cryptography-toolkit
-# License    : MIT
+# Cryptography Toolkit - Project Dependencies
 #
-# Install:
-#   pip install -r requirements.txt
-# ============================================================
-
-# Modern cryptographic primitives
-cryptography>=45.0.0,<46.0.0
+# Caesar Cipher and XOR Cipher use only the Python standard library.
+# The RSA Cipher module relies on the `cryptography` package for its
+# underlying primitives (see README > Educational Notice).
+ 
+cryptography>=42.0.0
