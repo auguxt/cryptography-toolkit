@@ -1,58 +1,90 @@
 # Cryptography Toolkit 🔐
 
-Simple encryption examples built from scratch in Python.
-Easy enough for a beginner to understand!
+Three simple encryption ciphers built from scratch in Python.
+No external libraries needed — just plain Python!
+
+> ⚠️ **For learning only.** Do not use in real projects.
+
+---
 
 ## What's Inside
 
-| File | What it does |
-|------|-------------|
-| `caesar_cipher.py` | Shifts letters by a number |
-| `xor_cipher.py` | XORs letters with a key |
-| `rsa_cipher.py` | Uses two keys (public + private) |
+```
+cryptography-toolkit/
+│
+├── caesar_cipher.py
+├── xor_cipher.py
+├── rsa_cipher.py
+│
+├── test_caesar.py
+├── test_xor.py
+├── test_rsa.py
+│
+├── README.md
+├── LICENSE
+├── requirements.txt
+└── .gitignore
+```
+
+---
+
+## The 3 Ciphers
+
+### 🔤 Caesar Cipher
+Shifts each letter by a fixed number.
+```
+"HELLO" with shift 3 → "KHOOR"
+"KHOOR" with shift 3 → "HELLO"
+```
+
+### ⊕ XOR Cipher
+XORs each letter with a key. Apply it twice = original back.
+```
+"Hello" + key "SECRET" → [numbers]
+[numbers] + key "SECRET" → "Hello"
+```
+
+### 🔑 RSA Cipher
+Uses two keys. Encrypt with one, decrypt with the other.
+```
+Public key  → encrypts the message
+Private key → decrypts the message
+```
+
+---
 
 ## How to Run
 
 ```bash
+# Run each cipher (shows example output)
 python caesar_cipher.py
 python xor_cipher.py
 python rsa_cipher.py
 ```
 
+---
+
 ## How to Test
 
 ```bash
+# Run all tests
+python -m unittest test_caesar.py test_xor.py test_rsa.py -v
+
+# Or run one at a time
 python -m unittest test_caesar.py -v
 python -m unittest test_xor.py -v
 python -m unittest test_rsa.py -v
 ```
 
-## How Each Cipher Works
+---
 
-**Caesar Cipher**
-```
-A B C D E F ...        (original)
-D E F G H I ...        (shifted by 3)
+## Requirements
 
-"HELLO" → "KHOOR"
-```
+- Python 3.6+
+- No external libraries needed
 
-**XOR Cipher**
-```
-H XOR S = some number
-XOR again with S = H back
+---
 
-"Hello" + key "SECRET" → numbers → "Hello"
-```
+## License
 
-**RSA Cipher**
-```
-Two keys generated: public and private
-Encrypt with public key  → scrambled numbers
-Decrypt with private key → original message
-```
-
-## ⚠️ Note
-
-These are for **learning only**.
-Do not use for real security — use proper libraries like `cryptography`.
+MIT — see [LICENSE](LICENSE)
