@@ -1,40 +1,15 @@
-# Byte-compiled / optimized files
+# Python
 __pycache__/
-*.py[cod]
-*$py.class
+*.pyc
 
-# Distribution / packaging
-build/
-dist/
-*.egg-info/
-.eggs/
-
-# Virtual environments
+# Virtual environment
 venv/
-env/
-.venv/
 .env
 
-# Testing / coverage
-.pytest_cache/
-.coverage
-htmlcov/
-.tox/
-
-# Type checkers / linters
-.mypy_cache/
-.ruff_cache/
-
-# IDE / editor
+# IDE
 .vscode/
 .idea/
-*.swp
 
-# OS files
+# OS
 .DS_Store
 Thumbs.db
-
-# Keys / secrets (never commit real keys)
-*.pem
-*.key
-secrets/
