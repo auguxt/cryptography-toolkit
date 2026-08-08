@@ -1,7 +1,3 @@
-# Cryptography Toolkit - Project Dependencies
-#
-# Caesar Cipher and XOR Cipher use only the Python standard library.
-# The RSA Cipher module relies on the `cryptography` package for its
-# underlying primitives (see README > Educational Notice).
- 
-cryptography>=42.0.0
+# No external libraries needed
+# Caesar and XOR use Python standard library only
+# RSA uses random and math from standard library
