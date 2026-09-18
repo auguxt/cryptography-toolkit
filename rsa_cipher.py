@@ -31,6 +31,10 @@ def mod_inverse(e, phi):
 def generate_keys():
     p = generate_prime()
     q = generate_prime()
+    # p and q MUST be different primes: if p == q, phi is computed wrong
+    # and roughly 1 in 32 generated keys silently fails to decrypt.
+    while q == p:
+        q = generate_prime()
 
     n = p * q
     phi = (p - 1) * (q - 1)

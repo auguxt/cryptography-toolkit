@@ -16,13 +16,15 @@ cryptography-toolkit/
 ├── xor_cipher.py
 ├── rsa_cipher.py
 │
-├── test_caesar.py
-├── test_xor.py
-├── test_rsa.py
+├── tests/
+│   ├── test_caesar.py
+│   ├── test_xor.py
+│   └── test_rsa.py
 │
 ├── README.md
-├── LICENSE
+├── pyproject.toml
 ├── requirements.txt
+├── LICENSE
 └── .gitignore
 ```
 
@@ -68,19 +70,17 @@ python rsa_cipher.py
 
 ```bash
 # Run all tests
-python -m unittest test_caesar.py test_xor.py test_rsa.py -v
+python -m unittest discover tests -v
 
-# Or run one at a time
-python -m unittest test_caesar.py -v
-python -m unittest test_xor.py -v
-python -m unittest test_rsa.py -v
+# Or with pytest (test paths are configured in pyproject.toml)
+python -m pytest
 ```
 
 ---
 
 ## Requirements
 
-- Python 3.6+
+- Python 3.8+
 - No external libraries needed
 
 ---
